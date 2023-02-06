@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Form from "./components/Form";
+import Notes from "./components/Notes";
 
-function App() {
+let counter = 0;
+const App = () => {
+  const [notes, setNotes] = useState([]);
+
+  const append = (note) => {
+    setNotes((prevNotes) => {
+      return [{ Note: note, ID: counter++ }, ...prevNotes];
+    });
+  };
+
+  const remove = (index) => {
+    setNotes(notes.filter((_, i) => i !== index));
+  };
+
+  const NoteState = (isChecked, index) => {
+    setNotes((prevNotes) => {
+      let nwArr = [...prevNotes];
+      if (isChecked) {
+        nwArr.push(prevNotes[index]);
+        nwArr.splice(index, 1);
+      } else {
+        nwArr = [prevNotes[index], ...prevNotes];
+        nwArr.splice(index + 1, 1);
+      }
+      return nwArr;
+    });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Form onSubmit={append}></Form>
+      <Notes notes={notes} Remove={remove} HandleChnge={NoteState}></Notes>
     </div>
   );
-}
+};
 
 export default App;

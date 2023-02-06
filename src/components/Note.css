@@ -1,0 +1,49 @@
+.note {
+  width: 30%;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 16px;
+  background-color: lightyellow;
+  border-radius: 10px;
+  box-shadow: 0 0 10px gray;
+}
+
+.note p {
+  margin: 0 auto;
+  display: inline;
+}
+
+.note input {
+  display: flex;
+  float: right;
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  border-radius: 50%;
+  border: 2px solid lightblue;
+  background-color: white;
+  margin-right: 10px;
+  position: relative;
+}
+
+input[type="checkbox"]:checked:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: lightblue;
+}
+
+.trash {
+  float: right;
+  display: inline;
+  border: none;
+  /* background-color: transparent;*/
+}
+
+ul {
+  list-style: none;
+}
